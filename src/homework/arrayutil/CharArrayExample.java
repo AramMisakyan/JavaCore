@@ -48,6 +48,9 @@ public class CharArrayExample {
             if (bobArray[i] == 'b' && bobArray[nextTwoIndex] == 'b' && i != bobArray.length - 1) {
                 System.out.println(bobArray[i] + "" + bobArray[nextIndex] + "" + bobArray[nextTwoIndex] + " -> true");
             }
+            else if (bobArray[i] == 'b' && bobArray[nextTwoIndex] != 'b' && i != bobArray.length - 1){
+                System.out.println(bobArray[i] + "" + bobArray[nextIndex] + "" + bobArray[nextTwoIndex] + " -> false");
+            }
 
         }
 
@@ -61,6 +64,9 @@ public class CharArrayExample {
             }
 
         }
+
+//        char[] text ={'b','a','r','e','v'};
+//        System.out.println(text[1]+""+text[2]);
 
     }
 }
