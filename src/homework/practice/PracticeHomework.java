@@ -1,7 +1,7 @@
 package homework.practice;
 
 public class PracticeHomework {
-    long secontConvert(int minutes) {
+    long secontConvert(long minutes) {
 
         return minutes * 60;
 
@@ -21,11 +21,12 @@ public class PracticeHomework {
 
     boolean lessThanOrEqualToZero(int number) {
 
-        if (number <= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return number <= 0 ? true : false;
+//        if (number <= 0) {
+//            return true;
+//        } else {
+//            return false;
+//        }
 
     }
 
@@ -36,13 +37,13 @@ public class PracticeHomework {
     }
 
     int maxLengthArray(int[] array1, int[] array2) {
+        return  (array1.length > array2.length) ? array1.length : array2.length;
 
-        if (array1.length>array2.length){
-            return array1.length;
-        }
-        else {
-            return array2.length;
-        }
+//        if (array1.length > array2.length) {
+//            return array1.length;
+//        } else {
+//            return array2.length;
+//        }
 
     }
 
