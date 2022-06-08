@@ -3,14 +3,15 @@ package homework.braceChecker;
 public class BraceChecker {
 
     private String text;
+    private Stack stack = new Stack();
+    private Stack stackIndex = new Stack();
 
     public BraceChecker(String text) {
         this.text = text;
     }
 
     public void check() {
-        Stack stack = new Stack();
-        Stack stackIndex = new Stack();
+
         int openedIndex = 0;
         int stackSize = 0;
         for (int i = 0; i < text.length(); i++) {
@@ -33,17 +34,9 @@ public class BraceChecker {
 
                         System.out.println("ERROR closed " + sim + " but not open in line " + i);
                     }
-                    if (brace == '(' && sim != ')') {
+                    if ((brace == '(' && sim != ')')||(brace == '[' && sim != ']')||(brace == '{' && sim != '}') ){
 
-                        System.out.println("ERROR opened " + brace + " but closed " + sim + "in line " + i);
-                    }
-                    if (brace == '[' && sim != ']') {
-
-                        System.out.println("ERROR opened " + brace + " but closed " + sim + "in line " + i);
-                    }
-                    if (brace == '{' && sim != '}') {
-
-                        System.out.println("ERROR opened " + brace + " but closed " + sim + "in line " + i);
+                        System.out.println("ERROR opened " + brace + " but closed " + sim + " in line " + i);
                     }
                     break;
                 default:
