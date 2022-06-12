@@ -92,12 +92,20 @@ public class DinamicArrayHomework {
 
     //Գրել մեթոդ delete(int index) որ տանք ինդեքսը, այդ ինդեքսի տակ գտնվող թիվը հեռացնի մասիվից. (նոր մասիվ պետք չէ սարքել)
     void delete(int index) {
-        for (int i = index + 1; i < size; i++) {
-            array[i - 1] = array[i];
+        if (index < size) {
+            for (int i = index + 1; i < size; i++) {
+                array[i - 1] = array[i];
+            }
+            array[--size] = 0;
+        } else {
+            System.out.println("you have not number in index: " + index);
         }
-        array[--size] = 0;
+
     }
 
+    public int getLastIndex() {
+        return size - 1;
+    }
 
 }
 
