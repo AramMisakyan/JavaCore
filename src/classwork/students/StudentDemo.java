@@ -32,28 +32,14 @@ public class StudentDemo {
                     System.out.println(studentStorage.getSize());
                     break;
                 case 4:
-                    studentStorage.print();
-                    System.out.println("Please choose student index");
-                    int index = Integer.parseInt(scanner.nextLine());
-                    studentStorage.delete(index);
+                    deleteStudentByIndex();
                     break;
                 case 5:
-                    System.out.println("Please enter lesson name");
-                    String lessonName = scanner.nextLine();
-                    studentStorage.printStudentsByLesson(lessonName);
+                    searchStudentByLessonName();
                     break;
                 case 6:
-                    studentStorage.print();
-                    System.out.println("Please choose student index");
-                    index = Integer.parseInt(scanner.nextLine());
-                    while (!studentStorage.haveStudentInThisIndex(index)) {
-                        System.out.println("Error have not student in this index");
-                        System.out.println("Please enter correct index ");
-                        index = Integer.parseInt(scanner.nextLine());
-                    }
-                    System.out.println("Please enter new lesson name");
-                    String newLessonName = scanner.nextLine();
-                    studentStorage.changeStudentLessonInIndex(index, newLessonName);
+                    changeStudentLesson();
+
                     break;
                 default:
                     System.out.println("Invalid command,please try again");
@@ -63,6 +49,32 @@ public class StudentDemo {
         }
 
 
+    }
+
+    private static void searchStudentByLessonName() {
+        System.out.println("Please enter lesson name");
+        String lessonName = scanner.nextLine();
+        studentStorage.printStudentsByLesson(lessonName);
+    }
+
+    public static void deleteStudentByIndex(){
+    studentStorage.print();
+    System.out.println("Please choose student index");
+    int index = Integer.parseInt(scanner.nextLine());
+    studentStorage.delete(index);
+}
+    public static void changeStudentLesson() {
+        studentStorage.print();
+        System.out.println("Please choose student index");
+        int index = Integer.parseInt(scanner.nextLine());
+        while (!studentStorage.haveStudentInThisIndex(index)) {
+            System.out.println("Error have not student in this index");
+            System.out.println("Please enter correct index ");
+            index = Integer.parseInt(scanner.nextLine());
+        }
+        System.out.println("Please enter new lesson name");
+        String newLessonName = scanner.nextLine();
+        studentStorage.changeStudentLessonInIndex(index, newLessonName);
     }
 
     private static void addStudent() {
