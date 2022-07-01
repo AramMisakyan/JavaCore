@@ -1,6 +1,6 @@
-package homework.books;
+package homework.books.storage;
 
-import classwork.students.Student;
+import homework.books.models.Book;
 
 public class BookStorage {
     private Book[] array = new Book[10];
@@ -32,11 +32,11 @@ public class BookStorage {
         return size;
     }
 
-    public void searchBookByAuthor(String authorName) {
+    public void searchBookByAuthorName(String name) {
         boolean trueAuthor = false;
         for (int i = 0; i < size; i++) {
-            if (array[i].getAuthorName().equals(authorName)) {
-                System.out.println(array[i]);
+            if (array[i].getAuthor().getName().equals(name)) {
+                System.out.println(array[i].getAuthor());
                 trueAuthor = true;
             }
             if (!trueAuthor) {
@@ -58,21 +58,23 @@ public class BookStorage {
             }
         }
     }
-
+public void changeAuthorInBook(){}
     public void searchBookInPriceRange(double lower, double upper) {
         boolean trueRange = false;
         if (lower > upper) {
             System.out.println("you enter not correct lower and upper price ");
-        }
-        for (int i = 0; i < size; i++) {
-            if (array[i].getPrice() >= lower && array[i].getPrice() <= upper) {
-                System.out.println(array[i]);
-                trueRange = true;
+        }else {
+            for (int i = 0; i < size; i++) {
+                if (array[i].getPrice() >= lower && array[i].getPrice() <= upper) {
+                    System.out.println(array[i]);
+                    trueRange = true;
+                }
+                if (!trueRange){
+                    System.out.println("We have not books in this range");
+                }
             }
-            if (!trueRange){
-                System.out.println("We have not books in this range");
-            }
         }
+
 
     }
 
