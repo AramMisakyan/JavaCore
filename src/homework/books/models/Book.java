@@ -64,8 +64,8 @@ public class Book {
                 "title ='" + title + '\'' +
                 ", authorName =" + author.getName() +
                 ", price =" + price +
-                ", count =" + count +
                 ", genre ='" + genre + '\'' +
+                ", count =" + count +
                 '}';
     }
 

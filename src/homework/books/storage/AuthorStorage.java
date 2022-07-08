@@ -1,5 +1,6 @@
 package homework.books.storage;
 
+import homework.books.execution.AuthorNotFoundException;
 import homework.books.models.Author;
 
 
@@ -49,21 +50,35 @@ public class AuthorStorage {
     }
 
     public Author getAuthorByIndex(int index) {
-        if (index >= 0 || index < size) {
-            return array[index];
+        if (index >= 0 && index < size) {
+            if (array[index] == null) {
+                throw new AuthorNotFoundException("you have not Author in this " + index + " index");
+            }
+            else {
+                return array[index];
+            }
+
+
         } else {
-            System.out.println("you have not Author in this index");
-            return null;
+            throw new AuthorNotFoundException("its not correct index");
+
         }
 
     }
 
     public String getAuthorNameByIndex(int index) {
-        if (index >= 0 || index < size) {
-            return array[index].getName();
+        if (index >= 0 && index < size) {
+            if (array[index].getName() == null) {
+                throw new AuthorNotFoundException("you have not Author in this " + index + " index");
+            }
+            else {
+                return array[index].getName();
+            }
+
+
         } else {
-            System.out.println("you have not Author in this index");
-            return null;
+            throw new AuthorNotFoundException("its not correct index");
+
         }
     }
 

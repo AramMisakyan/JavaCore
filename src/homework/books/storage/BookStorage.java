@@ -58,18 +58,21 @@ public class BookStorage {
             }
         }
     }
-public void changeAuthorInBook(){}
+
+    public void changeAuthorInBook() {
+    }
+
     public void searchBookInPriceRange(double lower, double upper) {
         boolean trueRange = false;
-        if (lower > upper) {
+        if ((lower > upper) || lower < 0 || upper < 0) {
             System.out.println("you enter not correct lower and upper price ");
-        }else {
+        } else {
             for (int i = 0; i < size; i++) {
                 if (array[i].getPrice() >= lower && array[i].getPrice() <= upper) {
                     System.out.println(array[i]);
                     trueRange = true;
                 }
-                if (!trueRange){
+                if (!trueRange) {
                     System.out.println("We have not books in this range");
                 }
             }
