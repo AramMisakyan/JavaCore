@@ -2,15 +2,12 @@ package homework.books;
 
 import homework.books.commands.Commands;
 import homework.books.enums.Gender;
-
-import homework.books.execution.NotFoundException;
+import homework.books.enums.User;
+import homework.books.execution.AuthorNotFoundException;
 import homework.books.models.Author;
 import homework.books.models.Book;
-import homework.books.models.Role;
 import homework.books.storage.AuthorStorage;
 import homework.books.storage.BookStorage;
-import homework.books.storage.UserStorage;
-import homework.books.models.User;
 
 import java.util.Scanner;
 
@@ -23,129 +20,42 @@ public class BookDemo implements Commands {
     private static Scanner scanner = new Scanner(System.in);
     private static BookStorage bookStorage = new BookStorage();
     private static AuthorStorage authorStorage = new AuthorStorage();
-    private static UserStorage userStorage = new UserStorage();
+
 
     public static void main(String[] args) {
-
-        commandsConsoleFromLogin();
-
-
+bookOptions();
+//        loginAdminWhitEnum();
+//        loginAdmin();
+//        commandsConsole();
 
     }
 
-
-
-    public static void loginAdmin() {
+//    public static void loginAdminWhitEnum() {
+//        System.out.println("Please enter login");
+//        String login = scanner.nextLine().trim();
+//        System.out.println("Please enter password");
+//        String password = scanner.nextLine().trim();
+//        if (!User.ADMIN.getLogin().equals(login) || !User.ADMIN.getPassword().equals(password)) {
+//            System.out.println("you entered not correct login or password Please try again");
+//            loginAdminWhitEnum();
+//        }
+//
+//    }
+    public static void loginAdmin(){
         System.out.println("Please enter login");
         String login = scanner.nextLine().trim();
         System.out.println("Please enter password");
         String password = scanner.nextLine().trim();
-        if (!login.equals("admin") || !password.equals("123456")) {
+        if (!login.equals("admin")||!password.equals("123456")){
             System.out.println("you entered not correct login or password Please try again");
             loginAdmin();
         }
     }
 
-    public static void commandsConsoleFromLogin() {
+    public static void commandsConsole() {
         boolean run = true;
         while (run) {
-            Commands.printLoginCommands();
-            int command = enterOnlyIntNum();
-            switch (command) {
-                case EXIT:
-                    run = false;
-                    break;
-                case LOGIN:
-                    login();
-                    break;
-                case REGISTER:
-                    register();
-                    break;
-
-                default:
-                    System.out.println("error enter not correct command");
-            }
-        }
-    }
-
-    public static void login() {
-        System.out.println("Please input email,password");
-        String emailPasswordStr = scanner.nextLine();
-        String[] emailPassword = emailPasswordStr.split(",");
-        User user = userStorage.getUserByEmil(emailPassword[0]);
-        if (user == null) {
-            System.out.println("not correct email");
-        } else {
-            if (!user.getPassword().equals(emailPassword[1])) {
-                System.out.println("not correct password");
-            }
-            else {
-                if(user.getRole()==Role.ADMIN){
-                    commandsConsoleWithAdmin();
-
-                }else if (user.getRole()==Role.USER){
-commandsConsoleWithUser();
-                }
-
-            }
-        }
-    }
-
-    private static void register() {
-        System.out.println("Please input name,surname,email,password");
-        String userDataStr = scanner.nextLine();
-        String[] userData = userDataStr.split(",");
-        if (userData.length < 4) {
-            System.out.println("Please input correct user data");
-        } else {
-            if (userStorage.getUserByEmil(userData[2]) == null) {
-                User user = new User();
-                user.setName(userData[0]);
-                user.setSurname(userData[1]);
-                user.setEmail(userData[2]);
-                user.setPassword(userData[3]);
-                user.setRole(Role.USER);
-                userStorage.add(user);
-                System.out.println("you registered");
-            } else {
-                System.out.println("you have User in this email " + userData[2]);
-            }
-        }
-    }
-
-    public static void commandsConsoleWithUser() {
-        boolean run = true;
-        while (run) {
-            Commands.startCommandsPrintWithUser();
-            int command = enterOnlyIntNum();
-            switch (command) {
-                case EXIT:
-                    run = false;
-                    break;
-                case PRINT_ALL_BOOKS:
-                    bookStorage.print();
-                    break;
-                case PRINT_BOOKS_BY_AUTHOR:
-                    getBookByAuthorName();
-                    break;
-                case PRINT_BOOK_BY_GENRE:
-                    getBookByGenre();
-                    break;
-                case PRINT_BOOKS_PRICE_RANGE:
-                    getBookPriceRange();
-                    break;
-                case PRINT_AUTHORS:
-                    authorStorage.print();
-                    break;
-                default:
-                    System.out.println("error enter not correct command");
-            }
-        }
-    }
-    public static void commandsConsoleWithAdmin() {
-        boolean run = true;
-        while (run) {
-            Commands.startCommandsPrintWithAdmin();
+            startCommandsPrint();
             int command = enterOnlyIntNum();
             switch (command) {
                 case EXIT:
@@ -179,6 +89,27 @@ commandsConsoleWithUser();
     }
 
 
+    public static void startCommandsPrint() {
+        System.out.println("Please input 0 for EXIT");
+        System.out.println("Please input 1 for Add Book");
+        System.out.println("Please input 2 Print All Books");
+        System.out.println("Please input 3 Print Books by AuthorName");
+        System.out.println("Please input 4 Print Books by Genre ");
+        System.out.println("Please input 5 Print books by price range");
+        System.out.println("Please input 6 for Add Author");
+        System.out.println("Please input 7 Print All Authors");
+
+
+    }
+
+//    public static void addAuthorCommands() {
+//        System.out.println("Please input 0 for EXIT");
+//        System.out.println("Please input 1 for Add Name");
+//        System.out.println("Please input 2 for Add Surname");
+//        System.out.println("Please input 3 for Add Email");
+//        System.out.println("Please input 4 enter Author gender MALE or FEMALE");
+//        System.out.println("Please input 5 Print All Author ");
+//    }
 
     public static void addAuthor() {
         System.out.println("Please enter Author Name");
@@ -188,7 +119,12 @@ commandsConsoleWithUser();
         System.out.println("Please enter Author Email");
         String email = scanner.nextLine().trim();
         System.out.println("Please enter Author gender  MALE or FEMALE");
-
+//        String gender = enterGender();
+//        String gender = scanner.nextLine().trim().toUpperCase();
+//        while (!isValid(gender)) {
+//            System.out.println("is not correct gender Please enter MALE or FEMALE");
+//            gender = scanner.nextLine().trim().toUpperCase();
+//        }
         Gender gender = gender();
         Author author = new Author(name, surName, email, gender);
         authorStorage.add(author);
@@ -206,7 +142,21 @@ commandsConsoleWithUser();
         }
         return gender;
     }
+//    public static String enterGender() {
+//        try {
+//            System.out.println("Please enter MALE or FEMALE");
+//            String gender = scanner.nextLine().trim().toUpperCase();
+//           return Gender.valueOf(gender).name();
+//        } catch (IllegalArgumentException e) {
+//            System.out.println("is not correct gender Please enter MALE or FEMALE");
+//         return  enterGender();
+//        }
+//
+//    }
 
+//    public static boolean isValid(String trueGender) {
+//        return trueGender.equals("MALE") || trueGender.equals("FEMALE");
+//    }
 
     public static void addBook() {
         Author author;
@@ -242,7 +192,7 @@ commandsConsoleWithUser();
                     try {
                         Author author = authorStorage.getAuthorByIndex(index);
                         trueIndex = false;
-                    } catch (NotFoundException e) {
+                    } catch (AuthorNotFoundException e) {
                         System.out.println(e.getMessage());
                     }
                 }

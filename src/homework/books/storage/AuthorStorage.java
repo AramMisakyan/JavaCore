@@ -1,6 +1,6 @@
 package homework.books.storage;
 
-import homework.books.execution.NotFoundException;
+import homework.books.execution.AuthorNotFoundException;
 import homework.books.models.Author;
 
 
@@ -18,7 +18,9 @@ public class AuthorStorage {
 
     private void extend() {
         Author[] temp = new Author[array.length + 10];
-        System.arraycopy(array, 0, temp, 0, array.length);
+        for (int i = 0; i < array.length; i++) {
+            temp[i] = array[i];
+        }
         array = temp;
     }
 
@@ -50,7 +52,7 @@ public class AuthorStorage {
     public Author getAuthorByIndex(int index) {
         if (index >= 0 && index < size) {
             if (array[index] == null) {
-                throw new NotFoundException("you have not Author in this " + index + " index");
+                throw new AuthorNotFoundException("you have not Author in this " + index + " index");
             }
             else {
                 return array[index];
@@ -58,7 +60,7 @@ public class AuthorStorage {
 
 
         } else {
-            throw new NotFoundException("its not correct index");
+            throw new AuthorNotFoundException("its not correct index");
 
         }
 
@@ -67,7 +69,7 @@ public class AuthorStorage {
     public String getAuthorNameByIndex(int index) {
         if (index >= 0 && index < size) {
             if (array[index].getName() == null) {
-                throw new NotFoundException("you have not Author in this " + index + " index");
+                throw new AuthorNotFoundException("you have not Author in this " + index + " index");
             }
             else {
                 return array[index].getName();
@@ -75,7 +77,7 @@ public class AuthorStorage {
 
 
         } else {
-            throw new NotFoundException("its not correct index");
+            throw new AuthorNotFoundException("its not correct index");
 
         }
     }
