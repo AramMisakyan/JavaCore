@@ -1,23 +1,23 @@
 package homework.books.storage;
 
 import homework.books.execution.NotFoundException;
-import homework.books.models.Author;
+import homework.books.models.User;
 
 
-public class AuthorStorage {
-    private Author[] array = new Author[10];
+public class UserStorage {
+    private User[] array = new User[10];
     private int size = 0;
 
 
-    public void add(Author author) {
+    public void add(User User) {
         if (array.length == size) {
             extend();
         }
-        array[size++] = author;
+        array[size++] = User;
     }
 
     private void extend() {
-        Author[] temp = new Author[array.length + 10];
+        User[] temp = new User[array.length + 10];
         System.arraycopy(array, 0, temp, 0, array.length);
         array = temp;
     }
@@ -37,22 +37,20 @@ public class AuthorStorage {
     }
 
 
-    public Author getAuthorByName(String name) {
+    public User getUserByEmil(String email) {
         for (int i = 0; i < size; i++) {
-            if (name.equals(array[i].getName())) {
+            if (email.equals(array[i].getEmail())) {
                 return array[i];
             }
         }
-        System.out.println("you have not this Author");
         return null;
     }
 
-    public Author getAuthorByIndex(int index) {
+    public User getUserByIndex(int index) {
         if (index >= 0 && index < size) {
             if (array[index] == null) {
-                throw new NotFoundException("you have not Author in this " + index + " index");
-            }
-            else {
+                throw new NotFoundException("you have not User in this " + index + " index");
+            } else {
                 return array[index];
             }
 
@@ -64,12 +62,11 @@ public class AuthorStorage {
 
     }
 
-    public String getAuthorNameByIndex(int index) {
+    public String getUserNameByIndex(int index) {
         if (index >= 0 && index < size) {
             if (array[index].getName() == null) {
-                throw new NotFoundException("you have not Author in this " + index + " index");
-            }
-            else {
+                throw new NotFoundException("you have not User in this " + index + " index");
+            } else {
                 return array[index].getName();
             }
 
@@ -80,7 +77,7 @@ public class AuthorStorage {
         }
     }
 
-    public Author getLastAuthor() {
+    public User getLastUser() {
         return array[size - 1];
     }
 

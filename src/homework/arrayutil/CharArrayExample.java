@@ -34,25 +34,28 @@ public class CharArrayExample {
         //Խնդիր 4
 
         char[] bobArray = {'b', 'o', 'b', 'c', 'd', 'b', 'b', 'c', 'i', 'b', 'f', 'b'};
-
-        for (int i = 0; i < bobArray.length; i++) {
-            int nextTwoIndex = i + 2;
-            int nextIndex = i + 1;
-            if (nextTwoIndex > bobArray.length - 3) {
-                nextTwoIndex = bobArray.length - 1;
-
-            }
-            if (nextIndex > bobArray.length - 2) {
-                nextIndex = i;
-            }
-            if (bobArray[i] == 'b' && bobArray[nextTwoIndex] == 'b' && i != bobArray.length - 1) {
-                System.out.println(bobArray[i] + "" + bobArray[nextIndex] + "" + bobArray[nextTwoIndex] + " -> true");
-            }
-            else if (bobArray[i] == 'b' && bobArray[nextTwoIndex] != 'b' && i != bobArray.length - 1){
-                System.out.println(bobArray[i] + "" + bobArray[nextIndex] + "" + bobArray[nextTwoIndex] + " -> false");
-            }
+        for (int i = 0; i < bobArray.length-2; i++) {
 
         }
+
+//        for (int i = 0; i < bobArray.length; i++) {
+//            int nextTwoIndex = i + 2;
+//            int nextIndex = i + 1;
+//            if (nextTwoIndex > bobArray.length - 3) {
+//                nextTwoIndex = bobArray.length - 1;
+//
+//            }
+//            if (nextIndex > bobArray.length - 2) {
+//                nextIndex = i;
+//            }
+//            if (bobArray[i] == 'b' && bobArray[nextTwoIndex] == 'b' && i != bobArray.length - 1) {
+//                System.out.println(bobArray[i] + "" + bobArray[nextIndex] + "" + bobArray[nextTwoIndex] + " -> true");
+//            }
+//            else if (bobArray[i] == 'b' && bobArray[nextTwoIndex] != 'b' && i != bobArray.length - 1){
+//                System.out.println(bobArray[i] + "" + bobArray[nextIndex] + "" + bobArray[nextTwoIndex] + " -> false");
+//            }
+//
+//        }
 
         System.out.println();
         //Խնդիր 5
